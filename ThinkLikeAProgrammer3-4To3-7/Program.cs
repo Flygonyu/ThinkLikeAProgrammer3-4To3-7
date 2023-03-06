@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ThinkLikeAProgrammer3_4To3_7
 {
@@ -7,8 +8,11 @@ namespace ThinkLikeAProgrammer3_4To3_7
     {
         static void Main(string[] args)
         {
-            Ex3dash4();
+            //Ex3dash4();
+            Ex3dash7();
         }
+
+        // 3-4 to 3-6
 
         static void Ex3dash4()
         {
@@ -52,7 +56,7 @@ namespace ThinkLikeAProgrammer3_4To3_7
             int count = 0;
             while (true)
             {
-                char randomLetter = Convert.ToChar(random.Next(65, 90));
+                char randomLetter = Convert.ToChar(random.Next(65, 91));
                 if (count >= cipherLetters.Length) break;
 
                 if (letters[count] == randomLetter || cipherLetters.Contains(randomLetter)) continue;
@@ -79,6 +83,31 @@ namespace ThinkLikeAProgrammer3_4To3_7
                 if (letters[i] == letter) return cipherLetters[i];
             }
             return letter;
+        }
+
+        // 3-7
+
+        static void Ex3dash7()
+        {
+            int[] intArray = { 1, 4, 6, 4, 8, 2, 9, 2, 4, 6 }; // find the mode
+            Array.Sort(intArray);
+
+            int highestCount = 1;
+            int currentCount = 1;
+            int mode = 0;
+
+            for (int i = 1; i < intArray.Length; i++)
+            {
+                if (intArray[i] == intArray[i - 1]) currentCount++;
+                else currentCount = 1;
+
+                if (currentCount > highestCount)
+                {
+                    mode = intArray[i];
+                    highestCount = currentCount;
+                }
+            }
+            Console.WriteLine($"The mode is {mode}, appearing {highestCount} times");
         }
     }
 }
